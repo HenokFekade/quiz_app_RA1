@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/controller/question_controller.dart';
 import 'package:quiz_app/screens/quiz/quiz.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -10,6 +11,7 @@ class WelcomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    QuestionController controller = Get.put(QuestionController());
     return Scaffold(
       body: Stack(
         children: [
@@ -50,31 +52,31 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  TextField(
-                    cursorColor: kGrayColor,
-                    decoration: InputDecoration(
-                      fillColor: Color(0xFF1C2341),
-                      filled: true,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 2,
-                          color: Color(0xFFF1F1F1),
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: kGrayColor,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-                      hintText: 'Full Name',
-                      hintStyle: TextStyle(color: kGrayColor),
-                    ),
-                  ),
+                  // TextField(
+                  //   cursorColor: kGrayColor,
+                  //   decoration: InputDecoration(
+                  //     fillColor: Color(0xFF1C2341),
+                  //     filled: true,
+                  //     focusedBorder: OutlineInputBorder(
+                  //       borderSide: BorderSide(
+                  //         width: 2,
+                  //         color: Color(0xFFF1F1F1),
+                  //       ),
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     enabledBorder: OutlineInputBorder(
+                  //       borderSide: BorderSide(
+                  //         width: 1.5,
+                  //         color: kGrayColor,
+                  //       ),
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     contentPadding:
+                  //         EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+                  //     hintText: 'Full Name',
+                  //     hintStyle: TextStyle(color: kGrayColor),
+                  //   ),
+                  // ),
                   Spacer(),
                   InkWell(
                     child: Container(

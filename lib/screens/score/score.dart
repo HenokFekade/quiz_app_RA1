@@ -35,7 +35,7 @@ class ScorePage extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                '${questionController.numberOfCorrectAnswers}/${questionController.questions.length}',
+                '${questionController.numberOfCorrectAnswers}/${questionController.questions!.length}',
                 textAlign: TextAlign.center,
                 style: Theme.of(context)
                     .textTheme

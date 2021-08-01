@@ -30,7 +30,7 @@ class QuestionCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            question.question,
+            '${question.id}. ${question.question}',
             style: Theme.of(context).textTheme.button!.copyWith(fontSize: 20),
           ),
           ..._getChoices(),
@@ -41,7 +41,7 @@ class QuestionCard extends StatelessWidget {
 
   List<Widget> _getChoices() {
     List<Widget> choices = [];
-    List<String> answers = question.answers;
+    List<dynamic> answers = question.answers;
     for (int i = 0; i < answers.length; i++) {
       bool isCorrect = question.correctAnswer == i;
       choices.add(GetBuilder<QuestionController>(

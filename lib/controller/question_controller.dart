@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/network/opentdb_network.dart';
 import 'package:quiz_app/screens/score/score.dart';
 
 class QuestionController extends GetxController
@@ -23,8 +24,7 @@ class QuestionController extends GetxController
   Animation? get animation => _animation;
   PageController? get pageController => _pageController;
   RxInt get questionNumber => this._questionNumber;
-  List<Question> questions =
-      sampleData.map((question) => Question.fromJson(question)).toList();
+  List<Question>? questions;
   Rx<Color> get primaryColor => _primayColor;
   Rx<Color> get backgroundColor => _backgroundColor;
   Rx<Color> get iconBackgroundColor => _iconBackgroundColor;
@@ -33,7 +33,9 @@ class QuestionController extends GetxController
   int get selectedIndex => _selectedIndex;
 
   void checkAnswer({required Question question, required int index}) {
-    question.correctAnswer == index ? _numberOfCorrectAnswer++ : null;
+    question.correctAnswer == index
+        ? _numberOfCorrectAnswer++
+        : print('incorrect answer!');
     _selectedIndex = index;
     _answered.value = true;
     _animationController!.stop();
@@ -42,7 +44,7 @@ class QuestionController extends GetxController
   }
 
   void nextQuestion() {
-    if (_questionNumber.value != questions.length) {
+    if (_questionNumber.value != questions!.length) {
       _questionNumber.value++;
       _pageController!
           .nextPage(duration: Duration(seconds: 1), curve: Curves.ease);
@@ -55,7 +57,9 @@ class QuestionController extends GetxController
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    var data = await getData();
+    questions = data.map((question) => Question.fromJson(question)).toList();
     _pageController = PageController();
 
     _animationController =

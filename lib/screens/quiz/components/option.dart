@@ -84,96 +84,16 @@ class Option extends StatelessWidget {
   }
 }
 
-// class Choice extends StatefulWidget {
-//   String answer;
-//   bool isCorrect;
-//   bool _answered = false;
-
-//   Choice({
-//     Key? key,
-//     required this.answer,
-//     required this.isCorrect,
-//   }) : super(key: key);
-
-//   @override
-//   _ChoiceState createState() => _ChoiceState();
-// }
-
-// class _ChoiceState extends State<Choice> {
-//   Color _primayColor = kSecondaryColor;
-//   Color _backgroundColor = Colors.transparent;
-//   IconData _icon = Icons.close;
-
-//   Color _iconBackgroundColor = Colors.white;
-//   QuestionController _questionController = Get.put(QuestionController());
-//   @override
-//   Widget build(BuildContext context) {
-//     return GetBuilder<QuestionController>(
-//       builder: (controller) => GestureDetector(
-//         onTap: () {
-//           print(widget._answered);
-//           if (!widget._answered) _onTap();
-//         },
-//         child: Container(
-//           width: double.infinity,
-//           margin: EdgeInsets.only(top: kDefaultPadding),
-//           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-//           decoration: BoxDecoration(
-//             color: _backgroundColor,
-//             borderRadius: BorderRadius.circular(10),
-//             border: Border.all(color: _primayColor, width: 2),
-//           ),
-//           child: Row(
-//             children: [
-//               Text(
-//                 widget.answer,
-//                 style: Theme.of(context)
-//                     .textTheme
-//                     .bodyText1!
-//                     .copyWith(color: _primayColor),
-//               ),
-//               Spacer(),
-//               Container(
-//                 decoration: BoxDecoration(
-//                   border: Border.all(color: _primayColor, width: 2),
-//                   shape: BoxShape.circle,
-//                 ),
-//                 child: CircleAvatar(
-//                   child: Icon(
-//                     _icon,
-//                     color: Colors.white,
-//                   ),
-//                   backgroundColor: _iconBackgroundColor,
-//                   minRadius: 15,
-//                   maxRadius: 15,
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
+// opentdb.com/api.php?
+// https://opentdb.com/api_token.php?command=request
+// https://opentdb.com/api.php?amount=10&token=YOURTOKENHERE
+// https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple
+// var url = Uri.https('www.googleapis.com', '/books/v1/volumes', {'q': '{http}'});
+// if (response.statusCode == 200) {
+//     var jsonResponse =
+//         convert.jsonDecode(response.body) as Map<String, dynamic>;
+//     var itemCount = jsonResponse['totalItems'];
+//     print('Number of books about http: $itemCount.');
+//   } else {
+//     print('Request failed with status: ${response.statusCode}.');
 //   }
-
-//   void _onTap() {
-//     setState(() {
-//       widget._answered = true;
-//     });
-//     print(widget._answered);
-
-//     setState(() {
-//       if (widget.isCorrect) {
-//         _primayColor = kGreenColor;
-//         _iconBackgroundColor = kGreenColor;
-//         _backgroundColor = kGreenColor.withOpacity(0.1);
-//         _icon = Icons.done;
-//       } else {
-//         _primayColor = kRedColor;
-//         _iconBackgroundColor = kRedColor;
-//         _backgroundColor = kRedColor.withOpacity(0.1);
-//         _icon = Icons.close;
-//       }
-//     });
-//     _questionController.checkAnswer(widget.isCorrect);
-//   }
-// }
