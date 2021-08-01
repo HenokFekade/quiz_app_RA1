@@ -38,7 +38,7 @@ class QuestionController extends GetxController
     _answered.value = true;
     _animationController!.stop();
     update();
-    Future.delayed(Duration(seconds: 5), nextQuestion);
+    Future.delayed(Duration(seconds: 2), nextQuestion);
   }
 
   void nextQuestion() {

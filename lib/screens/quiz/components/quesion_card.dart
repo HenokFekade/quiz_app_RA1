@@ -56,15 +56,17 @@ class QuestionCard extends StatelessWidget {
               else if (controller.answered.value && isCorrect)
                 return kGreenColor;
               else
-                return kSecondaryColor;
+                return kGrayColor;
             }
 
             return Option(
               answer: answers[i],
-              isCorrect: isCorrect,
-              index: i,
               color: getColor(i),
-              onTab: () => controller.checkAnswer(question: question, index: i),
+              onTab: () {
+                if (!controller.answered.value)
+                  return controller.checkAnswer(question: question, index: i);
+                return null;
+              },
             );
           }));
     }

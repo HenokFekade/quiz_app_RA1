@@ -6,14 +6,10 @@ import 'package:quiz_app/controller/question_controller.dart';
 
 class Option extends StatelessWidget {
   final String answer;
-  final bool isCorrect;
-  final int index;
   final Color color;
   final VoidCallback onTab;
   const Option(
-      {required this.isCorrect,
-      required this.answer,
-      required this.index,
+      {required this.answer,
       required this.color,
       required this.onTab,
       Key? key})
@@ -21,6 +17,26 @@ class Option extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color containerBackground;
+    Color iconBackground;
+    IconData icon;
+    Color textColor;
+
+    if (color == kGrayColor) {
+      containerBackground = Colors.transparent;
+      iconBackground = Colors.transparent;
+      icon = Icons.close;
+      textColor = kSecondaryColor;
+    } else {
+      containerBackground = color.withOpacity(0.1);
+      iconBackground = color;
+      textColor = color;
+      if (color == kGreenColor)
+        icon = Icons.done;
+      else
+        icon = Icons.close;
+    }
+
     return GetBuilder<QuestionController>(
         init: QuestionController(),
         builder: (controller) {
@@ -31,7 +47,7 @@ class Option extends StatelessWidget {
               margin: EdgeInsets.only(top: kDefaultPadding),
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               decoration: BoxDecoration(
-                color: Colors.transparent,
+                color: containerBackground,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: color, width: 2),
               ),
@@ -42,7 +58,7 @@ class Option extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyText1!
-                        .copyWith(color: color),
+                        .copyWith(color: textColor, fontSize: 17),
                   ),
                   Spacer(),
                   Container(
@@ -52,10 +68,10 @@ class Option extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       child: Icon(
-                        Icons.close,
+                        icon,
                         color: Colors.white,
                       ),
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: iconBackground,
                       minRadius: 15,
                       maxRadius: 15,
                     ),
